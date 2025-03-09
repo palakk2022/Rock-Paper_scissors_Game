@@ -6,7 +6,8 @@ const userScorePara=document.querySelector("#user-score");
 const compscorepara=document.querySelector("#comp-score");
 const choices = document.querySelectorAll(".choice");
 const msg=document.querySelector("#msg");
-
+let reset_btn= document.querySelector("#reset-game");
+let isgameactive=true;
 //GENRATE COMPUTER CHOICES 
 const gencompchoice=()=>{
   const options=["rock","paper","scissors"];
@@ -65,4 +66,19 @@ choices.forEach((choice)=>{
         const userchoice=choice.getAttribute("id");
         playgame(userchoice);
     })
+})
+
+//RESET GAME
+reset_btn.addEventListener("click",()=>{
+  isgameactive=true;
+  userScore=0;
+  compScore=0;
+  userScorePara.innerText=userScore;
+  compscorepara.innerText=compScore;
+  msg.style.backgroundColor="red";
+  msg.innerText="Game Restarted! Choose Rock, Paper, or Scissors!";
+  
+  msg.classList.remove("blink");
+  void msg.offsetWidth; // Trigger reflow to restart animation
+  msg.classList.add("blink");
 })
